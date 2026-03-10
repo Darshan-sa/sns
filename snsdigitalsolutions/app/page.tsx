@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 
 export default function Home() {
   const [hoveredService, setHoveredService] = useState<number | null>(null);
@@ -11,7 +12,7 @@ export default function Home() {
       <nav className="sticky top-0 z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
           <div className="text-2xl font-bold tracking-tight text-black dark:text-white">
-            SNS Digital
+            S&S Digital Solutions
           </div>
           <div className="hidden md:flex gap-8">
             <a href="#services" className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white font-medium transition">
@@ -143,35 +144,52 @@ export default function Home() {
                 title: "TechStart Hub",
                 category: "SaaS Platform",
                 description: "A comprehensive project management tool with real-time collaboration features.",
-                image: "bg-gradient-to-br from-blue-500 to-purple-600"
+                image: "https://images.unsplash.com/photo-1627873649417-af36d7c7a052?w=600&h=400&fit=crop",
+                url: "https://techstart-hub.com"
               },
               {
                 title: "Fashion Forward",
                 category: "E-Commerce",
                 description: "Modern fashion e-commerce platform with personalized recommendations.",
-                image: "bg-gradient-to-br from-pink-500 to-red-600"
+                image: "/artwork.png",
+                url: "https://kalagallery.vercel.app/"
               },
               {
                 title: "Wellness Co",
                 category: "Corporate",
                 description: "Clean corporate website for a wellness and fitness company.",
-                image: "bg-gradient-to-br from-green-500 to-teal-600"
+                image: "https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?w=600&h=400&fit=crop",
+                url: "https://wellness-co.com"
               },
               {
                 title: "Digital Magazine",
                 category: "Media",
                 description: "Interactive digital magazine with engaging multimedia content.",
-                image: "bg-gradient-to-br from-orange-500 to-yellow-600"
+                image: "https://images.unsplash.com/photo-1557821552-17105176677c?w=600&h=400&fit=crop",
+                url: "https://digital-magazine.com"
               }
             ].map((project, index) => (
-              <div key={index} className="group cursor-pointer rounded-lg overflow-hidden">
-                <div className={`${project.image} w-full h-64 md:h-80 transition-transform duration-300 group-hover:scale-105`}></div>
+              <a
+                key={index}
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group cursor-pointer rounded-lg overflow-hidden block hover:opacity-90 transition-opacity"
+              >
+                <div className="relative w-full h-64 md:h-80 overflow-hidden">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
                 <div className="p-6 border border-t-0 border-gray-200 dark:border-gray-800">
                   <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">{project.category}</p>
                   <h3 className="text-2xl font-bold text-black dark:text-white mt-2 mb-3">{project.title}</h3>
                   <p className="text-gray-600 dark:text-gray-400">{project.description}</p>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
@@ -203,7 +221,14 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="bg-gradient-to-br from-gray-300 to-gray-400 dark:from-gray-800 dark:to-gray-700 h-96 rounded-lg"></div>
+            <div className="relative w-full h-96 rounded-lg overflow-hidden">
+              <Image
+                src="/logo.png"
+                alt="SNS Digital Solutions Logo"
+                fill
+                className="object-contain p-8"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -220,7 +245,7 @@ export default function Home() {
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
             <a
-              href="mailto:info@snsdigital.com"
+              href="mailto:darshansagare@snsdigitalsolutions.in"
               className="inline-block px-8 py-4 bg-black dark:bg-white text-white dark:text-black rounded-lg font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300"
             >
               Send Email
@@ -236,15 +261,15 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8 pt-12">
             <div>
               <h4 className="font-bold text-black dark:text-white mb-2">Email</h4>
-              <p className="text-gray-600 dark:text-gray-400">info@snsdigital.com</p>
+              <p className="text-gray-600 dark:text-gray-400">darshansagare@snsdigitalsolutions.in</p>
             </div>
             <div>
               <h4 className="font-bold text-black dark:text-white mb-2">Phone</h4>
-              <p className="text-gray-600 dark:text-gray-400">+1 (234) 567-8900</p>
+              <p className="text-gray-600 dark:text-gray-400">+91 9111060477</p>
             </div>
             <div>
               <h4 className="font-bold text-black dark:text-white mb-2">Address</h4>
-              <p className="text-gray-600 dark:text-gray-400">123 Design Street, Creative City</p>
+              <p className="text-gray-600 dark:text-gray-400">2 Vihar vihar , swasthya nagar,sukhliya,Indore ,452010</p>
             </div>
           </div>
         </div>
@@ -254,7 +279,7 @@ export default function Home() {
       <footer className="border-t border-gray-200 dark:border-gray-800 py-8 px-6">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-600 dark:text-gray-400 text-sm">
-            © 2026 SNS Digital Solutions. All rights reserved.
+            © 2026 S&S Digital Solutions. All rights reserved.
           </p>
           <div className="flex gap-6 mt-4 md:mt-0">
             <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition text-sm font-medium">
