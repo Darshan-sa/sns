@@ -10,10 +10,19 @@ export default function Home() {
     <div className="w-full bg-white dark:bg-black overflow-hidden">
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold tracking-tight text-black dark:text-white">
-            S&S Digital Solutions
-          </div>
+        <div className="max-w-6xl mx-auto px-6 py-3 flex justify-between items-center">
+          <a href="#" className="flex items-center gap-2">
+            <Image
+              src="/logo.png"
+              alt="SNS Digital Solutions"
+              width={40}
+              height={40}
+              className="h-10 w-10"
+            />
+            <span className="text-xl font-bold tracking-tight text-black dark:text-white hidden sm:inline">
+              SNS Digital Solutions
+            </span>
+          </a>
           <div className="hidden md:flex gap-8">
             <a href="#services" className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white font-medium transition">
               Services
@@ -32,7 +41,7 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center px-6 py-20">
+      <section className="min-h-screen flex items-centeopacity-10r justify-center px-6 py-20">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <div className="space-y-6">
             <h1 className="text-6xl md:text-7xl font-bold leading-tight tracking-tight text-black dark:text-white">
