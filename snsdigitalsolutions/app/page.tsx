@@ -1,65 +1,274 @@
-import Image from "next/image";
+'use client';
+
+import { useState } from 'react';
 
 export default function Home() {
+  const [hoveredService, setHoveredService] = useState<number | null>(null);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
+    <div className="w-full bg-white dark:bg-black overflow-hidden">
+      {/* Navigation */}
+      <nav className="sticky top-0 z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+          <div className="text-2xl font-bold tracking-tight text-black dark:text-white">
+            SNS Digital
+          </div>
+          <div className="hidden md:flex gap-8">
+            <a href="#services" className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white font-medium transition">
+              Services
+            </a>
+            <a href="#portfolio" className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white font-medium transition">
+              Portfolio
+            </a>
+            <a href="#about" className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white font-medium transition">
+              About
+            </a>
+            <a href="#contact" className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white font-medium transition">
+              Contact
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="min-h-screen flex items-center justify-center px-6 py-20">
+        <div className="max-w-4xl mx-auto text-center space-y-8">
+          <div className="space-y-6">
+            <h1 className="text-6xl md:text-7xl font-bold leading-tight tracking-tight text-black dark:text-white">
+              Design that Elevates Your <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Brand</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
+              We create beautiful, responsive websites that engage users and drive real business results. Modern design meets strategic thinking.
+            </p>
+          </div>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
             <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              href="#contact"
+              className="inline-block px-8 py-4 bg-black dark:bg-white text-white dark:text-black rounded-lg font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
+              Get Started
+            </a>
             <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              href="#portfolio"
+              className="inline-block px-8 py-4 border-2 border-gray-300 dark:border-gray-700 text-black dark:text-white rounded-lg font-semibold hover:border-black dark:hover:border-white transition-all duration-300"
             >
-              Learning
-            </a>{" "}
-            center.
+              View Our Work
+            </a>
+          </div>
+
+          <div className="pt-12 text-gray-500 dark:text-gray-500">
+            <p className="text-sm font-medium">↓ Scroll to explore</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section id="services" className="py-24 px-6 bg-gray-50 dark:bg-gray-950">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16 space-y-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-black dark:text-white">Our Services</h2>
+            <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
+              Comprehensive solutions to elevate your digital presence
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Web Design",
+                description: "Beautiful, modern designs that reflect your brand identity and engage your audience.",
+                icon: "✨"
+              },
+              {
+                title: "Development",
+                description: "Fast, secure, and scalable websites built with the latest technologies and best practices.",
+                icon: "⚡"
+              },
+              {
+                title: "Optimization",
+                description: "Improve performance, SEO, and user experience to maximize conversions and growth.",
+                icon: "🎯"
+              },
+              {
+                title: "E-Commerce",
+                description: "Complete e-commerce solutions with payment integration and inventory management.",
+                icon: "🛒"
+              },
+              {
+                title: "Mobile Apps",
+                description: "Native and cross-platform mobile applications that delight users.",
+                icon: "📱"
+              },
+              {
+                title: "Maintenance",
+                description: "Ongoing support, updates, and optimization to keep your site running smoothly.",
+                icon: "🔧"
+              }
+            ].map((service, index) => (
+              <div
+                key={index}
+                onMouseEnter={() => setHoveredService(index)}
+                onMouseLeave={() => setHoveredService(null)}
+                className={`p-8 rounded-lg border transition-all duration-300 cursor-pointer ${
+                  hoveredService === index
+                    ? 'bg-black dark:bg-white text-white dark:text-black border-black dark:border-white shadow-lg transform -translate-y-2'
+                    : 'bg-white dark:bg-gray-900 text-black dark:text-white border-gray-200 dark:border-gray-800'
+                }`}
+              >
+                <div className="text-4xl mb-4">{service.icon}</div>
+                <h3 className="text-xl font-bold mb-3">{service.title}</h3>
+                <p className={hoveredService === index ? 'text-gray-100 dark:text-gray-900' : 'text-gray-600 dark:text-gray-400'}>
+                  {service.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Portfolio Section */}
+      <section id="portfolio" className="py-24 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16 space-y-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-black dark:text-white">Recent Projects</h2>
+            <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
+              Showcase of our latest work and successful client partnerships
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {[
+              {
+                title: "TechStart Hub",
+                category: "SaaS Platform",
+                description: "A comprehensive project management tool with real-time collaboration features.",
+                image: "bg-gradient-to-br from-blue-500 to-purple-600"
+              },
+              {
+                title: "Fashion Forward",
+                category: "E-Commerce",
+                description: "Modern fashion e-commerce platform with personalized recommendations.",
+                image: "bg-gradient-to-br from-pink-500 to-red-600"
+              },
+              {
+                title: "Wellness Co",
+                category: "Corporate",
+                description: "Clean corporate website for a wellness and fitness company.",
+                image: "bg-gradient-to-br from-green-500 to-teal-600"
+              },
+              {
+                title: "Digital Magazine",
+                category: "Media",
+                description: "Interactive digital magazine with engaging multimedia content.",
+                image: "bg-gradient-to-br from-orange-500 to-yellow-600"
+              }
+            ].map((project, index) => (
+              <div key={index} className="group cursor-pointer rounded-lg overflow-hidden">
+                <div className={`${project.image} w-full h-64 md:h-80 transition-transform duration-300 group-hover:scale-105`}></div>
+                <div className="p-6 border border-t-0 border-gray-200 dark:border-gray-800">
+                  <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">{project.category}</p>
+                  <h3 className="text-2xl font-bold text-black dark:text-white mt-2 mb-3">{project.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-400">{project.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-24 px-6 bg-gray-50 dark:bg-gray-950">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12 space-y-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-black dark:text-white">About Us</h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                SNS Digital Solutions is a creative agency dedicated to building exceptional digital experiences. With over a decade of combined expertise, we help businesses of all sizes establish a powerful online presence.
+              </p>
+              <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                We believe in the power of thoughtful design and clean code. Every project is approached with strategy, creativity, and meticulous attention to detail.
+              </p>
+              <div className="grid grid-cols-2 gap-6 pt-4">
+                <div>
+                  <h4 className="text-3xl font-bold text-black dark:text-white">50+</h4>
+                  <p className="text-gray-600 dark:text-gray-400 font-medium">Projects Completed</p>
+                </div>
+                <div>
+                  <h4 className="text-3xl font-bold text-black dark:text-white">40+</h4>
+                  <p className="text-gray-600 dark:text-gray-400 font-medium">Happy Clients</p>
+                </div>
+              </div>
+            </div>
+            <div className="bg-gradient-to-br from-gray-300 to-gray-400 dark:from-gray-800 dark:to-gray-700 h-96 rounded-lg"></div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-24 px-6">
+        <div className="max-w-4xl mx-auto text-center space-y-8">
+          <div className="space-y-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-black dark:text-white">Let's Work Together</h2>
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              Ready to bring your vision to life? Get in touch with our team today.
+            </p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
+            <a
+              href="mailto:info@snsdigital.com"
+              className="inline-block px-8 py-4 bg-black dark:bg-white text-white dark:text-black rounded-lg font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300"
+            >
+              Send Email
+            </a>
+            <a
+              href="tel:+1234567890"
+              className="inline-block px-8 py-4 border-2 border-gray-300 dark:border-gray-700 text-black dark:text-white rounded-lg font-semibold hover:border-black dark:hover:border-white transition-all duration-300"
+            >
+              Call Us
+            </a>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 pt-12">
+            <div>
+              <h4 className="font-bold text-black dark:text-white mb-2">Email</h4>
+              <p className="text-gray-600 dark:text-gray-400">info@snsdigital.com</p>
+            </div>
+            <div>
+              <h4 className="font-bold text-black dark:text-white mb-2">Phone</h4>
+              <p className="text-gray-600 dark:text-gray-400">+1 (234) 567-8900</p>
+            </div>
+            <div>
+              <h4 className="font-bold text-black dark:text-white mb-2">Address</h4>
+              <p className="text-gray-600 dark:text-gray-400">123 Design Street, Creative City</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-gray-200 dark:border-gray-800 py-8 px-6">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
+          <p className="text-gray-600 dark:text-gray-400 text-sm">
+            © 2026 SNS Digital Solutions. All rights reserved.
           </p>
+          <div className="flex gap-6 mt-4 md:mt-0">
+            <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition text-sm font-medium">
+              Privacy
+            </a>
+            <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition text-sm font-medium">
+              Terms
+            </a>
+            <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition text-sm font-medium">
+              LinkedIn
+            </a>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </footer>
     </div>
   );
 }
