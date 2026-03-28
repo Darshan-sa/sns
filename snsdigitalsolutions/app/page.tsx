@@ -171,11 +171,11 @@ export default function Home() {
                 url: "https://wellness-co.com"
               },
               {
-                title: "Digital Magazine",
+                title: "Remote JOBS",
                 category: "Media",
                 description: "Interactive digital magazine with engaging multimedia content.",
                 image: "https://images.unsplash.com/photo-1557821552-17105176677c?w=600&h=400&fit=crop",
-                url: "https://digital-magazine.com"
+                url: "https://workremotelynow.com"
               }
             ].map((project, index) => (
               <a
